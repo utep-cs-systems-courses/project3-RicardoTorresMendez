@@ -43,6 +43,7 @@ void state_advance( u_char state );
 
 int switches = 0;
 u_char state;
+static int secCount = 0;
 
 void
 switch_interrupt_handler(){
@@ -82,8 +83,6 @@ short velocity[2] = {3,8}, limits[2] = {screenWidth-36, screenHeight-8};
 
 short redrawScreen = 1;
 u_int controlFontColor = COLOR_GREEN;
-
-static int secCount = 0;
 
 void wdt_c_handler(){
   secCount ++;
