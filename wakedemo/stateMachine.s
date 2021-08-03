@@ -21,6 +21,7 @@ temp:
     .word 3
 
 jt:
+	.word case_0
 	.word case_1
 	.word case_2
 	.word case_3
