@@ -58,7 +58,7 @@ switch_interrupt_handler(){
   }
 }
 
-/*
+
 void state_advance( u_char state ){
   switch( state ){
     case 0:
@@ -77,7 +77,6 @@ void state_advance( u_char state ){
   }
   buzzer_set_period( 0 );
 }
-*/
 
 
 // axis zero for col, axis 1 for row
