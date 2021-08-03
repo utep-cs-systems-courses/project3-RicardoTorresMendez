@@ -58,6 +58,7 @@ switch_interrupt_handler(){
   }
 }
 
+/*
 void state_advance( u_char state ){
   switch( state ){
     case 0:
@@ -70,11 +71,13 @@ void state_advance( u_char state ){
       interrupts = 185;//30s
       break;
     case 3:
+      reset_screen();
+    default:
       secCount = 0;
-      break;
   }
   buzzer_set_period( 0 );
 }
+*/
 
 
 // axis zero for col, axis 1 for row
