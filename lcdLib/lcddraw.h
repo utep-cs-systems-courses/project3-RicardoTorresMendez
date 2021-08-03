@@ -50,7 +50,7 @@ void drawString5x7(u_char col, u_char row, char *string,
 void drawChar5x7(u_char col, u_char row, char c, 
 		 u_int fgColorBGR, u_int bgColorBGR);
 
-void drawLine( int col_s, int row_s, int col_e, int row_e, int colorBGR );
+void drawLine( int col_s, int row_s, int col_e, int row_e, u_char colorBGR );
 
 /** Draw rectangle outline
  *  
