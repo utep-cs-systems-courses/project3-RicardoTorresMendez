@@ -2,7 +2,7 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
-#include "../buzzer.h"
+#include "buzzer.h"
 
 // WARNING: LCD DISPLAY USES P1.0.  Do not touch!!! 
 
@@ -72,6 +72,7 @@ void state_advance( u_char state ){
       //turn off sound
       break;
   }
+  buzzer_set_period( 0 );
 }
 
 
