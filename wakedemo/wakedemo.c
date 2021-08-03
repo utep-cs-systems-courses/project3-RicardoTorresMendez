@@ -111,12 +111,13 @@ void main(){
   reset_screen();
 
   while(1){			/* forever */
-    if (redrawScreen && state == 3) {
+    if( state == 3 ){
+      layer = 0;
+      continue;
+    }
+    if (redrawScreen) {
       redrawScreen = 0;
       draw_hourglass_sand();
-    }
-    else{
-      layer = 0;
     }
     P1OUT &= ~LED;	/* led off */
     or_sr(0x10);	/**< CPU OFF */
