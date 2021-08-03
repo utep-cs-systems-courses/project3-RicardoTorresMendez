@@ -2,6 +2,7 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "buzzer.h"
 
 // WARNING: LCD DISPLAY USES P1.0.  Do not touch!!! 
 
@@ -38,6 +39,7 @@ void draw_hourglass_frame();
 void draw_hourglass_sand();
 void update_shape();
 void reset_screen();
+void state_advance( u_char state );
 
 int switches = 0;
 u_char state;
@@ -58,13 +60,13 @@ switch_interrupt_handler(){
 void state_advance( u_char state ){
   switch( state ){
     case 0:
-      interrupts = 31;
+      interrupts = 31;//5s
       break;
     case 1:
-      interrupts = 62;
+      interrupts = 62;//10s
       break;
     case 2:
-      interrupts = 185;
+      interrupts = 185;//30s
       break;
     case 3:
       //turn off sound
@@ -98,6 +100,7 @@ void main(){
   configureClocks();
   lcd_init();
   switch_init();
+  buzzer_init();
   
   enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
@@ -128,7 +131,7 @@ void draw_hourglass_sand(){
   if( layer == total ){
     layer = 0;
     reset_screen();
-    //set alarm
+    buzzer_set_period( 300 );
     return;
   }
 
