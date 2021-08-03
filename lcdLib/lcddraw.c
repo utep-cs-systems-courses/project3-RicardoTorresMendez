@@ -17,7 +17,7 @@ void drawPixel(u_char col, u_char row, u_int colorBGR)
   lcd_writeColor(colorBGR);
 }
 
-void drawLine( u_char col_s, u_char row_s, u_char col_e, u_char row_e, u_char colorBGR ){
+void drawLine( u_char col_s, u_char row_s, u_char col_e, u_char row_e, u_int colorBGR ){
   u_char dcol = col_e - col_s;
   u_char drow = row_e - row_s;
   char d = ( 2 * drow ) - dcol;
