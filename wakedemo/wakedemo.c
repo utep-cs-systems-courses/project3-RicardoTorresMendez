@@ -133,12 +133,12 @@ void draw_hourglass_sand(){
   if( layer == total ){
     layer = 0;
     state = 3;
-    fillRectangle( 40, 63, 1, 40, COLOR_GREEN_YELLOW );
+    fillRectangle( 80, 63, 1, 40, COLOR_GREEN_YELLOW );
     buzzer_set_period( 300 );
     return;
   }
 
-  fillRectangle( 40, 63, 1, 40, COLOR_GRAY );
+  fillRectangle( 80, 63, 1, 40, COLOR_GRAY );
 
   fillRectangle( col + layer, row + layer, width - layer - layer, 1, COLOR_GREEN_YELLOW);
 
