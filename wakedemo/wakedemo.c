@@ -94,7 +94,9 @@ void reset_screen(){
 }
 
 void draw_hourglass_sand(){
-  static int layer = 0, col = 13, row = 111, width = 100, j = 0;
+  static int layer = 0;
+  static int col = 62, row = 58, width = 2;
+  static int col_2 = 13, row_2 = 111, width_2 = 100, j = 0;
   int total = 40;
   if( layer == total  ){
     layer = 0;
@@ -103,13 +105,13 @@ void draw_hourglass_sand(){
     return;
   }
 
-
+  fillRectangle( col - layer, row - layer, width + layer + layer, 1, COLOR_GRAY);
 
   if( layer % 2 == 0 ){
     j = layer / 2;
-    fillRectangle( col + j, row - j, width - j - j, 1, COLOR_GRAY);
+    fillRectangle( col_2 + j, row_2 - j, width_2 - j - j, 1, COLOR_GRAY);
   }
-  
+
   layer++;
 }
 
