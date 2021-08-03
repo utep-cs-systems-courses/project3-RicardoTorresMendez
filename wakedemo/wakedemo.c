@@ -137,7 +137,7 @@ void draw_hourglass_sand(){
     return;
   }
 
-
+  fillRectangle( 63, 40, 1, 20, COLOR_GRAY );
 
   fillRectangle( col + layer, row + layer, width - layer - layer, 1, COLOR_GREEN_YELLOW);
 
