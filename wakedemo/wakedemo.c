@@ -93,7 +93,8 @@ void wdt_c_handler(){
     redrawScreen = 1;
   }     
 }
-  
+
+static int layer = 0;  
 
 void main(){
   
@@ -109,7 +110,6 @@ void main(){
   
   reset_screen();
 
-  static int layer = 0;
   while(1){			/* forever */
     if (redrawScreen && state < 3) {
       redrawScreen = 0;
