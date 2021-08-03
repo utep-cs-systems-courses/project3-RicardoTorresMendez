@@ -17,13 +17,13 @@ void drawPixel(u_char col, u_char row, u_int colorBGR)
   lcd_writeColor(colorBGR);
 }
 
-void drawLine( u_char col_s,u_char row_s, u_char col_e, u_char row_e,u_int colorBGR ){
+void drawLine( int col_s, int row_s, int col_e, int row_e, int colorBGR ){
   int dcol = col_e - col_s;
   int drow = row_e - row_s;
   int d = ( 2 * drow ) - dcol;
-  u_char y = row_s;
-  
-  for(u_char x = col_s; x<= col_e; x++){
+  int y = row_s;
+
+  for(int x = col_s; x<= col_e; x++){
     drawPixel(x, y, colorBGR);
     if( d > 0 ){
       y++;
