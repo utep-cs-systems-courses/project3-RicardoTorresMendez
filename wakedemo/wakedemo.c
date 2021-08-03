@@ -95,7 +95,7 @@ void reset_screen(){
 
 void draw_hourglass_sand(){
   static int layer = 0;
-  static int col = 62, row = 19, width = 80;
+  static int col = 23, row = 19, width = 80;
   static int col_2 = 13, row_2 = 111, width_2 = 100, j = 0;
   int total = 40;
   if( layer == total  ){
@@ -105,7 +105,7 @@ void draw_hourglass_sand(){
     return;
   }
 
-  fillRectangle( col - layer, row + layer, width - layer - layer, 1, COLOR_GRAY);
+  fillRectangle( col + layer, row + layer, width - layer - layer, 1, COLOR_GREEN_YELLOW);
 
   if( layer % 2 == 0 ){
     j = layer / 2;
