@@ -14,6 +14,8 @@
 
 #define SWITCHES 15
 
+u_char interrupts = 31;
+
 static char 
 switch_update_interrupt_sense(){
   char p2val = P2IN;
@@ -38,11 +40,36 @@ void update_shape();
 void reset_screen();
 
 int switches = 0;
+u_char state;
 
 void
 switch_interrupt_handler(){
   char p2val = switch_update_interrupt_sense();
   switches = ~p2val & SWITCHES;
+  if( switches & SW1 ){ state = 0; }
+  if( switches & SW2 ){ state = 1; }
+  if( switches & SW3 ){ state = 2; }
+  if( switches & SW4 ){ state = 3; }
+  if( switches ){
+    state_advance( state );
+  }
+}
+
+void state_advance( u_char state ){
+  switch( state ){
+    case 0:
+      interrupts = 31;
+      break;
+    case 1:
+      interrupts = 62;
+      break;
+    case 2:
+      interrupts = 185;
+      break;
+    case 3:
+      //turn off sound
+      break;
+  }
 }
 
 
@@ -53,17 +80,14 @@ short velocity[2] = {3,8}, limits[2] = {screenWidth-36, screenHeight-8};
 short redrawScreen = 1;
 u_int controlFontColor = COLOR_GREEN;
 
-
-u_char interrupts = 31;
+static int secCount = 0;
 
 void wdt_c_handler(){
-  static int secCount = 0;
-
   secCount ++;
   if ( secCount >= interrupts ) {		/* 10/sec */
     secCount = 0;
     redrawScreen = 1;
-}     
+  }     
 }
   
 
@@ -107,6 +131,8 @@ void draw_hourglass_sand(){
     //set alarm
     return;
   }
+
+
 
   fillRectangle( col + layer, row + layer, width - layer - layer, 1, COLOR_GREEN_YELLOW);
 
