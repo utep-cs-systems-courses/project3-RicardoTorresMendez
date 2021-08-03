@@ -53,11 +53,14 @@ short velocity[2] = {3,8}, limits[2] = {screenWidth-36, screenHeight-8};
 short redrawScreen = 1;
 u_int controlFontColor = COLOR_GREEN;
 
+
+u_char interrupts = 31;
+
 void wdt_c_handler(){
   static int secCount = 0;
 
   secCount ++;
-  if (secCount >= 25) {		/* 10/sec */
+  if ( secCount >= interrupts ) {		/* 10/sec */
     secCount = 0;
     redrawScreen = 1;
 }     
@@ -98,7 +101,7 @@ void draw_hourglass_sand(){
   static int col = 23, row = 19, width = 80;
   static int col_2 = 13, row_2 = 111, width_2 = 100, j = 0;
   int total = 40;
-  if( layer == total  ){
+  if( layer == total ){
     layer = 0;
     reset_screen();
     //set alarm
