@@ -114,7 +114,7 @@ void draw_hourglass_frame(){
   //   fillRectangle( col - i, row - i, width + i + i, 1, COLOR_GRAY);
   // }
 
-  int col = 20, row = 100, width = 50;
+  int col = 15, row = 110, width = 50;
     fillRectangle( col, row, width, 1, COLOR_GRAY);
 
 }
