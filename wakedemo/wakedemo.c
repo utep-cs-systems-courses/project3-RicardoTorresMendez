@@ -69,7 +69,7 @@ void state_advance( u_char state ){
       interrupts = 185;//30s
       break;
     case 3:
-      //turn off sound
+      secCount = 0;
       break;
   }
   buzzer_set_period( 0 );
@@ -109,7 +109,7 @@ void main(){
   reset_screen();
 
   while(1){			/* forever */
-    if (redrawScreen) {
+    if (redrawScreen && state < 3) {
       redrawScreen = 0;
       draw_hourglass_sand();
     }
@@ -131,9 +131,8 @@ void draw_hourglass_sand(){
   int total = 40;
   if( layer == total ){
     layer = 0;
-    reset_screen();
+    state = 0;
     buzzer_set_period( 300 );
-    or_sr(0x10);
     return;
   }
 
