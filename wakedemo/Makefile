@@ -13,7 +13,7 @@ all:wakedemo.elf
 wakedemo.elf: ${COMMON_OBJECTS} wakedemo.o wdt_handler.o buzzer.o
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd 
 
-#buzzer.o: buzzer.c buzzer.h
+buzzer.o: buzzer.c buzzer.h
 
 load: wakedemo.elf
 	msp430loader.sh $^
