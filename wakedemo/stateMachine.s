@@ -4,7 +4,7 @@
 #include "lcddraw.h"
 #include "buzzer.h"
 
-    .arch msp430g2553
+	.arch msp430g2553
 	.p2align 1,0
 
     .text
@@ -27,20 +27,20 @@ jt:
 	.word default
 
 state_advance:
-    cmp r12, temp
+    cmp r12, &temp
     jc default
 
     add r12, r12
     mov jt(r12), r0
 
 case_0:
-    mov 0x1F, &interrupts
+    mov #0x1F, &interrupts
     jmp end
 case_1:
-    mov 0x3E, &interrupts
+    mov #0x3E, &interrupts
     jmp end
 case_2:
-    mov 0xB9, &interrupts
+    mov #0xB9, &interrupts
     jmp end
 case_3:
     call #reset_screen
