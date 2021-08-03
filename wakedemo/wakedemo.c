@@ -86,7 +86,7 @@ void draw_hourglass();
 
 void draw_hourglass(){
   fillRectangle(10, 7, 107, 2, COLOR_WHITE);
-  fillRectangle(10,110, 107, 2, COLOR_WHITE);
+  fillRectangle(10,112, 107, 2, COLOR_WHITE);
   drawDiagonal( 10, 7, 1, 107, COLOR_WHITE );
 }
 
