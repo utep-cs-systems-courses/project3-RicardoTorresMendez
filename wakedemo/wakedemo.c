@@ -99,7 +99,7 @@ void draw_hourglass_frame(){
   drawDiagonal( 10, 112, -1, 107, COLOR_WHITE );
 
   //sand
-  drawPixel( 63, 58, COLOR_GRAY );
+  drawPixel( 62, 58, COLOR_GRAY );
 }
 
 void update_shape(){
