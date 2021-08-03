@@ -94,7 +94,7 @@ void reset_screen(){
 }
 
 void draw_hourglass_sand(){
-  static int layer = 0;
+  static int layer = 0, col = 13, row = 111, width = 100, j = 0;
   int total = 40;
   if( layer == total  ){
     layer = 0;
@@ -102,7 +102,9 @@ void draw_hourglass_sand(){
     //set alarm
     return;
   }
-  int col = 13, row = 111, width = 100, j = 0;
+
+  
+
   if( layer % 2 == 0 ){
     j = layer / 2;
     fillRectangle( col + j, row - j, width - j - j, 1, COLOR_GRAY);
@@ -117,20 +119,10 @@ void draw_hourglass_frame(){
   drawDiagonal( 10, 112, -1, 107, COLOR_WHITE );
 
   //sand
-  drawPixel( 62, 58, COLOR_GRAY );
   int col = 62, row = 58, width = 2;
   for( int i=0; i<40; i++ ){
     fillRectangle( col - i, row - i, width + i + i, 1, COLOR_GRAY);
   }
-
-  // int col = 13, row = 111, width = 100;
-  // int j;
-  // for(int i=0; i<40; i++){
-  //   j = i/2;
-  //   if( i % 2 == 0 ){
-  //     fillRectangle( col + j, row - j, width - j - j, 1, COLOR_GRAY);
-  //   }
-  // }
 
 }
 
