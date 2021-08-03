@@ -87,6 +87,7 @@ void draw_hourglass(){
   fillRectangle(10,120, 110, 2, COLOR_WHITE);
 }
 
+/*
 void update_shape(){
   static unsigned char row = screenHeight / 2, col = screenWidth / 2;
   static char blue = 31, green = 0, red = 31;
