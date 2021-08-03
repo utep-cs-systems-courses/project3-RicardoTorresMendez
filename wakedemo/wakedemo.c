@@ -32,6 +32,10 @@ switch_init()			/* setup switch */{
   switch_update_interrupt_sense();
 }
 
+void draw_hourglass_frame();
+void draw_hourglass_sand();
+void update_shape();
+
 int switches = 0;
 
 void
@@ -71,10 +75,11 @@ void main(){
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
   clearScreen(COLOR_GREEN_YELLOW);
+  draw_hourglass_frame();
   while(1){			/* forever */
     if (redrawScreen) {
       redrawScreen = 0;
-      draw_hourglass();
+      draw_hourglass_sand();
     }
     P1OUT &= ~LED;	/* led off */
     or_sr(0x10);	/**< CPU OFF */
@@ -82,42 +87,40 @@ void main(){
   }
 }
 
-void draw_hourglass();
+void draw_hourglass_sand(){
 
-void draw_hourglass(){
+}
+
+void draw_hourglass_frame(){
+  //glass
   fillRectangle(10, 7, 107, 2, COLOR_WHITE);
   fillRectangle(10,112, 107, 2, COLOR_WHITE);
   drawDiagonal( 10, 7, 1, 107, COLOR_WHITE );
   drawDiagonal( 10, 112, -1, 107, COLOR_WHITE );
+
+  //sand
+  drawPixel( 64, 30, COLOR_GRAY );
 }
-
-/*
-
-void update_shape();
 
 void update_shape(){
   static unsigned char row = screenHeight / 2, col = screenWidth / 2;
   static char blue = 31, green = 0, red = 31;
   static unsigned char step = 0;
-  if (switches & SW4) return;
-  if (step <= 60) {
+  if(step <= 60){
     int startCol = col - step;
     int endCol = col + step;
     int width = 1 + endCol - startCol;
-    // a color in this BGR encoding is BBBB BGGG GGGR RRRR
-    unsigned int color = (blue << 11) | (green << 5) | red;
-    fillRectangle(startCol, row+step, width, 1, color);
-    fillRectangle(startCol, row-step, width, 1, color);
-    if (switches & SW3) green = (green + 1) % 64;
-    if (switches & SW2) blue = (blue + 2) % 32;
-    if (switches & SW1) red = (red - 3) % 32;
-    step ++;
-  } else {
+
+    fillRectangle(startCol, row+step, width, 1, COLOR_WHITE);
+    fillRectangle(startCol, row-step, width, 1, COLOR_WHITE);
+
+    step++;
+  }
+  else{
      clearScreen(COLOR_BLUE);
      step = 0;
   }
 }
-*/
 
 int color( char blue, char green, char red ){
   return (blue << 11) | (green << 5) | red;
