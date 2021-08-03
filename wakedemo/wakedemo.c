@@ -94,7 +94,7 @@ void wdt_c_handler(){
   }     
 }
 
-static int layer = 0;  
+int layer = 0;  
 
 void main(){
   
