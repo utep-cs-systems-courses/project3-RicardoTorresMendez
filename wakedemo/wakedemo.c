@@ -103,12 +103,14 @@ void draw_hourglass_sand(){
     return;
   }
 
-  
+
 
   if( layer % 2 == 0 ){
     j = layer / 2;
     fillRectangle( col + j, row - j, width - j - j, 1, COLOR_GRAY);
   }
+  
+  layer++;
 }
 
 void draw_hourglass_frame(){
