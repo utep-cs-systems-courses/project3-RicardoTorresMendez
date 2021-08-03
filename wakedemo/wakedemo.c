@@ -15,8 +15,7 @@
 #define SWITCHES 15
 
 static char 
-switch_update_interrupt_sense()
-{
+switch_update_interrupt_sense(){
   char p2val = P2IN;
   /* update switch interrupt to detect changes from current buttons */
   P2IES |= (p2val & SWITCHES);	/* if switch up, sense down */
@@ -25,8 +24,7 @@ switch_update_interrupt_sense()
 }
 
 void 
-switch_init()			/* setup switch */
-{  
+switch_init()			/* setup switch */{  
   P2REN |= SWITCHES;		/* enables resistors for switches */
   P2IE |= SWITCHES;		/* enable interrupts from switches */
   P2OUT |= SWITCHES;		/* pull-ups for switches */
@@ -37,8 +35,7 @@ switch_init()			/* setup switch */
 int switches = 0;
 
 void
-switch_interrupt_handler()
-{
+switch_interrupt_handler(){
   char p2val = switch_update_interrupt_sense();
   switches = ~p2val & SWITCHES;
 }
@@ -51,8 +48,7 @@ short velocity[2] = {3,8}, limits[2] = {screenWidth-36, screenHeight-8};
 short redrawScreen = 1;
 u_int controlFontColor = COLOR_GREEN;
 
-void wdt_c_handler()
-{
+void wdt_c_handler(){
   static int secCount = 0;
 
   secCount ++;
@@ -64,10 +60,9 @@ void wdt_c_handler()
   
 void update_shape();
 
-void main()
-{
+void main(){
   
-  P1DIR |= LED;		/**< Green led on when CPU on */
+  P1DIR |= LED;		/**< Red led on when CPU on */
   P1OUT |= LED;
   configureClocks();
   lcd_init();
@@ -76,11 +71,11 @@ void main()
   enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
-  clearScreen(COLOR_BLUE);
-  while (1) {			/* forever */
+  clearScreen(COLOR_GREEN_YELLOW);
+  while(1){			/* forever */
     if (redrawScreen) {
       redrawScreen = 0;
-      update_shape();
+      draw_hourglass();
     }
     P1OUT &= ~LED;	/* led off */
     or_sr(0x10);	/**< CPU OFF */
@@ -88,11 +83,13 @@ void main()
   }
 }
 
-    
-    
+void draw_hourglass(){
+  fillRectangle(1,1, 30, 2, COLOR_WHITE);
+}
+
+/*
 void
-update_shape()
-{
+update_shape(){
   static unsigned char row = screenHeight / 2, col = screenWidth / 2;
   static char blue = 31, green = 0, red = 31;
   static unsigned char step = 0;
@@ -114,7 +111,11 @@ update_shape()
      step = 0;
   }
 }
+*/
 
+int color( char blue, char green, char red ){
+  return (blue << 11) | (green << 5) | red;
+}
 
 /* Switch on S2 */
 void
