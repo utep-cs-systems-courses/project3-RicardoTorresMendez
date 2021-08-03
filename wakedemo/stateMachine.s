@@ -29,7 +29,7 @@ jt:
 
 state_advance:
     cmp r12, &temp
-    jc default
+    jnc default
 
     add r12, r12
     mov jt(r12), r0
@@ -48,4 +48,6 @@ case_3:
 default:
     mov #0, &secCount
 end:
-    pop r0
+	mov #0, r12
+	call #buzzer_set_period
+	pop r0
