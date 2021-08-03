@@ -3,8 +3,8 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
 #include "buzzer.h"
-
-    .arch msp430g2553
+	
+	.arch msp430g2553
 	.p2align 1,0
 
     .text
@@ -21,26 +21,27 @@ temp:
     .word 3
 
 jt:
+	.word case_0
 	.word case_1
 	.word case_2
 	.word case_3
 	.word default
 
 state_advance:
-    cmp r12, temp
+    cmp r12, &temp
     jc default
 
     add r12, r12
     mov jt(r12), r0
 
 case_0:
-    mov 0x1F, &interrupts
+    mov.b #0x1F, &interrupts
     jmp end
 case_1:
-    mov 0x3E, &interrupts
+    mov.b #0x3E, &interrupts
     jmp end
 case_2:
-    mov 0xB9, &interrupts
+    mov.b #0xB9, &interrupts
     jmp end
 case_3:
     call #reset_screen

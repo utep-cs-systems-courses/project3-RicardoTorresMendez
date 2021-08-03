@@ -43,7 +43,7 @@ void state_advance( u_char state );
 
 int switches = 0;
 u_char state;
-static int secCount = 0;
+int secCount = 0;
 
 void
 switch_interrupt_handler(){
@@ -58,7 +58,7 @@ switch_interrupt_handler(){
   }
 }
 
-
+/*
 void state_advance( u_char state ){
   switch( state ){
     case 0:
@@ -77,7 +77,7 @@ void state_advance( u_char state ){
   }
   buzzer_set_period( 0 );
 }
-
+*/
 
 // axis zero for col, axis 1 for row
 short drawPos[2] = {10,10}, controlPos[2] = {10,10};
