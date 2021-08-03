@@ -3,7 +3,7 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
 #include "buzzer.h"
-	
+
 	.arch msp430g2553
 	.p2align 1,0
 
