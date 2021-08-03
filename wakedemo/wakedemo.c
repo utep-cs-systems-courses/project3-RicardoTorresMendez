@@ -126,6 +126,7 @@ void reset_screen(){
 }
 
 void draw_hourglass_sand(){
+  if(state == 3){ layer = 0; }
   static int layer = 0;
   static int col = 23, row = 19, width = 80;
   static int col_2 = 13, row_2 = 111, width_2 = 100, j = 0;
