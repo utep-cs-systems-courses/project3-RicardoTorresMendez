@@ -132,8 +132,8 @@ void draw_hourglass_sand(){
   if( layer == total ){
     layer = 0;
     reset_screen();
-    redrawScreen = 0;
     buzzer_set_period( 300 );
+    or_sr(0x10);
     return;
   }
 
