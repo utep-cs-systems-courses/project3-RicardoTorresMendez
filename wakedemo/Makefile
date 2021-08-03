@@ -15,7 +15,7 @@ wakedemo.elf: ${COMMON_OBJECTS} wakedemo.o wdt_handler.o buzzer.o stateMachines.
 
 buzzer.o: buzzer.c buzzer.h
 
-stateMachines.o: stateMachines.s
+#stateMachines.o: stateMachines.s
 
 load: wakedemo.elf
 	msp430loader.sh $^
