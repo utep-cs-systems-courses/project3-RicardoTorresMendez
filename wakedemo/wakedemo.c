@@ -105,7 +105,7 @@ void draw_hourglass_sand(){
     return;
   }
 
-  fillRectangle( col - layer, row - layer, width + layer + layer, 1, COLOR_GRAY);
+  fillRectangle( col - layer, row - layer, width + layer + layer, 1, COLOR_GREEN_YELLOW);
 
   if( layer % 2 == 0 ){
     j = layer / 2;
