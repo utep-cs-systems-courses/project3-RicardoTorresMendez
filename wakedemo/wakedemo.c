@@ -109,10 +109,14 @@ void main(){
   
   reset_screen();
 
+  static int layer = 0;
   while(1){			/* forever */
     if (redrawScreen && state < 3) {
       redrawScreen = 0;
       draw_hourglass_sand();
+    }
+    else{
+      layer = 0;
     }
     P1OUT &= ~LED;	/* led off */
     or_sr(0x10);	/**< CPU OFF */
@@ -126,8 +130,6 @@ void reset_screen(){
 }
 
 void draw_hourglass_sand(){
-  static int layer = 0;
-  if(state == 3){ layer = 0; }
   static int col = 23, row = 19, width = 80;
   static int col_2 = 13, row_2 = 111, width_2 = 100, j = 0;
   int total = 40;
