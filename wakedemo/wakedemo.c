@@ -55,7 +55,7 @@ void wdt_c_handler(){
   if (secCount >= 25) {		/* 10/sec */
     secCount = 0;
     redrawScreen = 1;
-  }
+}     
 }
   
 void update_shape();
@@ -84,7 +84,8 @@ void main(){
 }
 
 void draw_hourglass(){
-  fillRectangle(1,1, 120, 2, COLOR_WHITE);
+  fillRectangle(10,1, 120, 2, COLOR_WHITE);
+  fillRectangle(10,120, 120, 2, COLOR_WHITE);
 }
 
 /*
