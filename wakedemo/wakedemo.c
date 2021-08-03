@@ -111,7 +111,7 @@ void main(){
   reset_screen();
 
   while(1){			/* forever */
-    if (redrawScreen && state < 3) {
+    if (redrawScreen && state == 3) {
       redrawScreen = 0;
       draw_hourglass_sand();
     }
