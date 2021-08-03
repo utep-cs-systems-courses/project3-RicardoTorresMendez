@@ -35,6 +35,7 @@ switch_init()			/* setup switch */{
 void draw_hourglass_frame();
 void draw_hourglass_sand();
 void update_shape();
+void reset_screen();
 
 int switches = 0;
 
@@ -74,8 +75,8 @@ void main(){
   enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
-  clearScreen(COLOR_GREEN_YELLOW);
-  draw_hourglass_frame();
+  reset_screen();
+
   while(1){			/* forever */
     if (redrawScreen) {
       redrawScreen = 0;
@@ -87,17 +88,25 @@ void main(){
   }
 }
 
+void reset_screen(){
+  clearScreen(COLOR_GREEN_YELLOW);
+  draw_hourglass_frame();
+}
+
 void draw_hourglass_sand(){
   static int layer = 0;
   int total = 40;
   if( layer == total  ){
     layer = 0;
-    //refill top
+    reset_screen();
     //set alarm
     return;
   }
-  //fillRectangle();
-  //fillRectangle();
+  int col = 13, row = 111, width = 100, j = 0;
+  if( layer % 2 == 0 ){
+    j = layer / 2;
+    fillRectangle( col + j, row - j, width - j - j, 1, COLOR_GRAY);
+  }
 }
 
 void draw_hourglass_frame(){
@@ -108,20 +117,20 @@ void draw_hourglass_frame(){
   drawDiagonal( 10, 112, -1, 107, COLOR_WHITE );
 
   //sand
-  //drawPixel( 62, 58, COLOR_GRAY );
-  //int col = 62, row = 58, width = 2;
-  // for( int i=0; i<40; i++ ){
-  //   fillRectangle( col - i, row - i, width + i + i, 1, COLOR_GRAY);
-  // }
-
-  int col = 13, row = 111, width = 100;
-  int j;
-  for(int i=0; i<40; i++){
-    j = i/2;
-    if( i % 2 == 0 ){
-      fillRectangle( col + j, row - j, width - j - j, 1, COLOR_GRAY);
-    }
+  drawPixel( 62, 58, COLOR_GRAY );
+  int col = 62, row = 58, width = 2;
+  for( int i=0; i<40; i++ ){
+    fillRectangle( col - i, row - i, width + i + i, 1, COLOR_GRAY);
   }
+
+  // int col = 13, row = 111, width = 100;
+  // int j;
+  // for(int i=0; i<40; i++){
+  //   j = i/2;
+  //   if( i % 2 == 0 ){
+  //     fillRectangle( col + j, row - j, width - j - j, 1, COLOR_GRAY);
+  //   }
+  // }
 
 }
 
