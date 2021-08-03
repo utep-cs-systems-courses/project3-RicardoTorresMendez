@@ -100,7 +100,10 @@ void draw_hourglass_frame(){
 
   //sand
   //drawPixel( 62, 58, COLOR_GRAY );
-  fillRectangle(62, 58, 2, 1, COLOR_GRAY);
+  int col = 62, row = 58, width = 2;
+  for( int i=0; i<30; i++ ){
+    fillRectangle( col, row - i, width + i, 1, COLOR_GRAY);
+  }
 }
 
 void update_shape(){
