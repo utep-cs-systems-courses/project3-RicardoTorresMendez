@@ -132,7 +132,7 @@ void draw_hourglass_sand(){
   int total = 40;
   if( layer == total ){
     layer = 0;
-    state = 0;
+    state = 3;
     buzzer_set_period( 300 );
     return;
   }
