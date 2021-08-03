@@ -18,9 +18,9 @@ void drawPixel(u_char col, u_char row, u_int colorBGR)
 }
 
 void drawLine( u_char col_s, u_char row_s, u_char col_e, u_char row_e, u_int colorBGR ){
-  int dcol = col_e - col_s;
-  int drow = row_e - row_s;
-  int d = ( 2 * drow ) - dcol;
+  int dcol = (int) col_e - col_s;
+  int drow = (int) row_e - row_s;
+  int d = (int) ( 2 * drow ) - dcol;
   u_char y = row_s;
 
   for(u_char x = col_s; x<= col_e; x++){
